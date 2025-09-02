@@ -8,12 +8,22 @@
 </head>
 <body>
   <main>
-    <h1>Task Manager</h1>
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+      <h1 style="margin-bottom: 0;">Task Manager</h1>
+      <button id="dark-mode-toggle" type="button" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span aria-hidden="true" class="dark-toggle-icon">🌙</span>
+      </button>
+    </div>
     <form id="task-form" aria-label="Add a new task">
       <label for="task-input" class="visually-hidden">New Task</label>
       <input type="text" id="task-input" name="task" placeholder="Add a new task..." required aria-required="true" autocomplete="off">
       <button type="submit" aria-label="Add Task">Add</button>
     </form>
+    <nav id="filter-nav" aria-label="Task filters">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="filter-btn" data-filter="pending" aria-pressed="false">Pending</button>
+      <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+    </nav>
     <ul id="task-list" aria-live="polite"></ul>
   </main>
   <script src="script.js"></script>
