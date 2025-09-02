@@ -1,0 +1,223 @@
+/* Modern, responsive, accessible styles for Task Manager */
+
+:root {
+  --primary: #2563eb;
+  --primary-gradient: linear-gradient(90deg, #2563eb 0%, #4f8cff 100%);
+  --accent: #2ecc40;
+  --danger: #ff4136;
+  --bg: #f3f6fa;
+  --text: #1a1a1a;
+  --radius: 1rem;
+  --shadow: 0 4px 24px rgba(36, 99, 235, 0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+  --input-bg: #f7f9fc;
+  --input-border: #e0e6ed;
+  --card-bg: #fff;
+}
+
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01em;
+}
+
+
+main {
+  background: var(--card-bg);
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 180px;
+  height: 180px;
+  background: var(--primary-gradient);
+  opacity: 0.08;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+
+#task-form {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1.7rem;
+  z-index: 1;
+}
+
+
+#task-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius);
+  font-size: 1.05rem;
+  background: var(--input-bg);
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  box-shadow: none;
+}
+
+#task-input:focus {
+  border: 1.5px solid var(--primary);
+  box-shadow: 0 0 0 2px rgba(36,99,235,0.10);
+}
+
+
+#task-form button {
+  background: var(--primary-gradient);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0 1.4rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(36,99,235,0.08);
+  transition: background 0.18s, transform 0.15s;
+  outline: none;
+  letter-spacing: 0.01em;
+}
+
+#task-form button:hover,
+#task-form button:focus {
+  background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7f9fc;
+  border-radius: var(--radius);
+  margin-bottom: 0.85rem;
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 2px 8px rgba(36,99,235,0.04);
+  transition: background 0.18s, box-shadow 0.18s;
+  font-size: 1.07rem;
+  position: relative;
+}
+
+.task-item.completed {
+  background: linear-gradient(90deg, #e6f7e6 0%, #f7f9fc 100%);
+  text-decoration: line-through;
+  color: #a0a0a0;
+  opacity: 0.7;
+}
+
+
+.task-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.task-actions button {
+  background: none;
+  border: none;
+  padding: 0.32rem 0.7rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1.13rem;
+  transition: background 0.18s, color 0.18s, transform 0.13s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-actions .complete-btn {
+  color: var(--accent);
+  background: rgba(46,204,64,0.08);
+}
+.task-actions .complete-btn:hover,
+.task-actions .complete-btn:focus {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.task-actions .delete-btn {
+  color: var(--danger);
+  background: rgba(255,65,54,0.08);
+}
+.task-actions .delete-btn:hover,
+.task-actions .delete-btn:focus {
+  background: var(--danger);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.task-actions button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+
+@media (max-width: 500px) {
+  main {
+    padding: 1.1rem 0.3rem 1.1rem 0.3rem;
+    max-width: 99vw;
+  }
+  h1 {
+    font-size: 1.25rem;
+  }
+  #task-form button {
+    padding: 0 0.7rem;
+    font-size: 0.97rem;
+  }
+  .task-item {
+    font-size: 0.98rem;
+    padding: 0.7rem 0.7rem;
+  }
+}
